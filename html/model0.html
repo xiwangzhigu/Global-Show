@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>人口经济可视化</title>
+	<link href="./css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<!------ commn-js files ----->
+	<script src="./js/jquery.min.js"> </script>
+	<!------ commn-js files ----->
+	<!----- theme-style ----->
+	<link href="./css/style.css" rel='stylesheet' type='text/css' />
+	<!----- theme-style ----->
+	<!----- webfonts ----->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+	<!----- webfonts ----->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet"href="./css/chart.css"/>
+</head>
+	<body>
+	<!---header--->
+		<div class="header" >
+		<!---container--->
+			<div class="container">
+			<div class="top-header">
+				<div class="logo">
+					<a href="../index.html"><img src="./images/logo.png"/></a>
+				</div>
+				<div class="menu">
+					<ul class="nav" id="nav">
+						<li><a href="../index.html">主页</a></li>
+						<li  class="active"><a href="model0.html" class="scroll">全国GDP</a></li>
+						<li><a href="model1.html" class="scroll">各省人口经济</a></li>
+						<li><a href="model2_0.html" class="scroll">长三角GDP</a></li>
+						<li><a href="model2.html" class="scroll">长三角各市人口经济</a></li>
+						<li ><a href="model3.html" class="scroll">城市间人口迁徙</a></li>
+						<li><a href="about.html" class="scroll">关于</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+		<!---container--->
+		</div>
+	<!---header--->
+<!-- 以下开始添加功能代码 -->
+
+	<div align="center">
+	<div id="mainMap" style="height:700px;width:1000px;border:10px solid #ccc;padding:10px;"></div>
+	</div>
+	</body>
+	<script src="js/echarts-plain-map.js"></script>
+	
+<script type="text/javascript">
+    // Step:3 echarts & zrender as a Global Interface by the echarts-plain.js.
+    // Step:3 echarts和zrender被echarts-plain.js写入为全局接口
+
+	//option定义
+	option = {
+		title : {
+			text: '2013全国GDP（亿元）',
+			subtext: '数据来自国家统计局'
+		},
+		tooltip : {
+			trigger: 'item'
+		},
+		toolbox: {
+			show : false,
+			feature : {
+				mark : {show: true},
+				dataZoom : {show: true},
+				dataView : {show: true, readOnly: false},
+				restore : {show: true},
+				saveAsImage : {show: true}
+			}
+		},
+		dataRange: {
+			min: 1000,
+			max: 63000,
+			y: 'bottom',
+			text:['高','低'],           // 文本，默认为数值文本
+			color:['#00688B','#FFA54F'],
+			calculable : true
+		},
+
+		animation: false,
+		series : [
+			{
+				name: '2013全国GDP分布',
+				type: 'map',
+				mapType: 'china',
+				roam:false,
+				mapLocation: {
+					x: 'center'
+				},
+				selectedMode : false,
+				
+				itemStyle:{
+					normal:{label:{show:true}},
+					emphasis:{label:{show:true}}
+				},
+				data:[
+					{name:'西藏', value:807.67},
+					{name:'青海', value:2101.05},
+					{name:'宁夏', value:2565.06},
+					{name:'海南', value:3146.46},
+					{name:'甘肃', value:6268.01},
+					{name:'贵州', value:8006.79},
+					{name:'新疆', value:8360.24},
+					{name:'云南', value:11720.91},
+					{name:'重庆', value:12656.69},
+					{name:'吉林', value:12981.46},
+					{name:'山西', value:12602.24},
+					{name:'天津', value:14370.16},
+					{name:'江西', value:14338.5},
+					{name:'广西', value:14378},
+					{name:'陕西', value:16045.01},
+					{name:'黑龙江', value:14382.93},
+					{name:'内蒙古', value:16832.38},
+					{name:'安徽', value:19038.87},
+					{name:'北京', value:19500.56},
+					{name:'福建', value:21759.64},
+					{name:'上海', value:21602.12},
+					{name:'湖北', value:24668.49},
+					{name:'湖南', value:24501.67},
+					{name:'四川', value:26260.77},
+					{name:'辽宁', value:27077.65},
+					{name:'河北', value:28301.41},
+					{name:'河南', value:32155.86},
+					{name:'浙江', value:37568.49},
+					{name:'山东', value:54684.33},
+					{name:'江苏', value:59161.75},
+					{name:'广东', value:62163.97}
+				]
+			}
+		]
+	};
+                    
+    var myChart = echarts.init(document.getElementById('mainMap'));
+    myChart.setOption(option);
+	
+    </script>
+	</html>
+		

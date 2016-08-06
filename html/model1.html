@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>人口经济可视化</title>
+	<link href="./css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<!------ commn-js files ----->
+	<script src="./js/jquery.min.js"> </script>
+	<!------ commn-js files ----->
+	<!----- theme-style ----->
+	<link href="./css/style.css" rel='stylesheet' type='text/css' />
+	<!----- theme-style ----->
+	<!----- webfonts ----->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+	<!----- webfonts ----->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- 添加：全国部分 -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=E8d5c530f017e26ea4e9b03c9ca3899e"></script>
+	<link rel="stylesheet"href="./css/chart.css"/>
+	<script src="./js/viewer.js"></script>
+	<script type="text/javascript">
+	
+	function MM_callJS(jsStr) { //v2.0
+	  return eval(jsStr)
+	}
+    </script>
+</head>
+	<body>
+	<!---header--->
+		<div class="header">
+		<!---container--->
+			<div class="container">
+			<div class="top-header">
+				<div class="logo">
+					<a href="../index.html"><img src="./images/logo.png"/></a>
+				</div>
+				<div class="menu">
+					<ul class="nav" id="nav">
+						<li><a href="../index.html">主页</a></li>
+						<li ><a href="model0.html" class="scroll">全国GDP</a></li>
+						<li class="active"><a href="model1.html" class="scroll">各省人口经济</a></li>
+						<li><a href="model2_0.html" class="scroll">长三角GDP</a></li>
+						<li><a href="model2.html" class="scroll">长三角各市人口经济</a></li>
+						<li ><a href="model3.html" class="scroll">城市间人口迁徙</a></li>
+						<li><a href="about.html" class="scroll">关于</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+		<!---container--->
+		</div>
+	<!---header--->
+<!-- 以下开始添加功能代码 -->
+
+<div id="Layer1" style="position:absolute;z-index:1 border:10px;solid #ccc;padding:10px;">
+	<div id="allmap" style="position:absolute; width:1600px; height:800px; z-index:1; left: 1px; top: 1px;"></div>	
+    <div id="Layer2" style="position:absolute; width:1200px; height:150px; z-index:1;  left: 40px; top: 1px;"onfocus="MM_callJS('hello')" >
+		<div id="chartType" style="background:#FFFACD;">
+			<p><br>
+			<h4>请选择数据范围</h4></p>
+			<p>
+			  <select name="x" id="NumProvice" onchange="checked()" selected=0 style="width:100px">
+			    <option value="0">北京</option>
+			    <option value="1">天津</option>
+			    <option value="2">河北</option>
+			    <option value="3">山西</option>
+			    <option value="4">内蒙古</option>
+			    <option value="5">辽宁</option>
+			    <option value="6">吉林</option>
+			    <option value="7">黑龙江</option>
+				<option value="8">上海</option>
+				<option value="9">江苏</option>
+				<option value="10">浙江</option>
+				<option value="11">安徽</option>
+				<option value="12">福建</option>
+				<option value="13">江西</option>
+				<option value="14">山东</option>
+				<option value="15">河南</option>
+				<option value="16">湖北</option>
+				<option value="17">湖南</option>
+				<option value="18">广东</option>
+				<option value="19">广西</option>
+				<option value="20">海南</option>
+				<option value="21">重庆</option>
+				<option value="22">四川</option>
+				<option value="23">贵州</option>
+				<option value="24">云南</option>
+				<option value="25">西藏</option>
+				<option value="26">陕西</option>
+				<option value="27">甘肃</option>
+				<option value="28">青海</option>
+				<option value="29">宁夏</option>
+				<option value="30">新疆</option>
+				<option value="31">全国</option>				
+		      </select>
+		  </p>
+			选择数据类型<br> 
+			<input type="radio" name="type" value="browser" checked="checked">人口数据<br>
+			<input type="radio" name="type" value="platform">受教育程度<br>
+			<input type="radio" name="type" value="oldData" >60岁老人健康状况<br>
+			</p>
+		  <p></p>
+		 <b>性别比（女生=100）:</b><span id="rate">106.7</span><br/>	 
+
+		<div id="sidebar">
+		<div id="sidebarBox">
+		  <div id="sidebarScrollView">
+			<div id="sidebarContentView">
+			<textarea readonly id="sum" style= "background:transparent;border-style:none;resize:none;overflow-y:hidden;color:#F00;height:660px;width:170px;">
+			</textarea>
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+	  </div>
+	  <div></div>
+		<div id="chartArea">&nbsp;</div>
+	</div>
+</div>
+  
+
+	</body>
+	</html>
+<script type="text/javascript">
+   
+   //百度地图API功能
+	var map = new BMap.Map("allmap");
+	var map = new BMap.Map("allmap",{minZoom:3,maxZoom:6}); // 创建Map实例,设置地图允许的最小/大级别
+	var provice=new Array("北京","天津","河北","山西","内蒙古","辽宁","吉林省","黑龙江","上海","江苏","浙江","安徽","福建","江西","山东","河南","湖北","湖南","广东","广西","海南","重庆","四川","贵州","云南","西藏","陕西","甘肃","青海","宁夏","新疆","全国");
+	var rate=new Array("67","145","25","55","81","25","26","28","61","15","56","33","59","66","23","20","55","58","89","82","125","26","31","63","78","56","69","44","74","49","68","49");
+	var color=new Array("#CD3333","#CD8500","#388E8E","#CD8500","#6495ED","#CD3333","#CD8500","#CD3333","#CD8500","#CD3333","#6495ED","#388E8E","#CD3333","#CD8500","#CD8500","#CD3333","#6495ED","#CD3333","#388E8E","#6495ED","#CD8500","#CD8500","#CD3333","#388E8E","#CD8500","#388E8E","#388E8E","#CD8500","#6495ED","#CD3333","#CD3333");
+	var GDP = new Array("19500.56","14370.16","28301.41","12602.24","16832.38","27077.65","12981.46","14382.93","21602.12","59161.75","37568.49","19038.87","21759.64","14338.5","54684.33","32155.86","24668.49","24501.67","62163.97","14378","3146.46","12656.69","26260.77","8006.79","11720.91","807.67","16045.01","6268.01","2101.05","2565.06","8360.24");
+	map.centerAndZoom(new BMap.Point(118.780949,32.05846), 5);
+	//map.disableScrollWheelZoom();
+	//map.disableDragging(); 
+
+	function InfoPoint(){
+	//弹跳动画+信息窗口
+		var point = new BMap.Point(lo[NumProvice.value],la[NumProvice.value]);
+		//map.centerAndZoom(point, 5);
+		
+		var marker = new BMap.Marker(point);  // 创建标注
+		map.addOverlay(marker);               // 将标注添加到地图中
+		marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+		//纯信息窗口
+		map.centerAndZoom(point, 15);
+		var opts = {
+		  width : 60,     // 信息窗口宽度
+		  height: 30,     // 信息窗口高度
+		  title : "2013年各省国民生产总值" , // 信息窗口标题
+		  enableMessage:false,//不设置允许信息窗发送短息
+		  message:""
+		}
+		
+		var infoWindow = new BMap.InfoWindow(provice[NumProvice.value]+":"+GDP[NumProvice.value]+"亿元", opts);  // 创建信息窗口对象 
+		marker.addEventListener("click", function(){          
+			map.openInfoWindow(infoWindow,point); //开启信息窗口
+		});
+	}
+
+	//经纬度坐标
+	var lo=new Array("116.417097","117.166607","115.143084","112.564983","111.243001","122.833298","126.218401","127.358889","121.471754","119.889731","120.27593","117.093198","118.325817","115.731798","118.141988","114.03939","112.236455","111.923701","113.395485","109.053723","109.679231","107.379569","102.853834","106.790855","101.547626","89.313423","108.998531","102.964218","96.598753","106.018169","86.222678");
+	var la=new Array("39.91334","39.169998","38.449308","37.817681","41.917667","41.115669","43.411136","46.899735","31.262431","32.897399","29.363012","32.62721","26.13916","27.967531","36.095418","33.915801","31.110283","27.842999","23.407845","23.81473","19.167226","29.674884","30.856663","26.675633","24.641444","31.046942","34.770387","37.632768","35.856142","37.398287","41.807642");
+
+	/**********全国地图初始化覆盖显示**********
+	function getBoundary(){       
+		var bdary = new BMap.Boundary();
+		for(var j=0;j<provice.length;j++){
+			bdary.get("中国", function(rs){       //获取行政区域      
+				var count = rs.boundaries.length; //行政区域的点有多少个
+				for(var i = 0; i < count; i++){
+					var ply = new BMap.Polygon(rs.boundaries[i], {strokeColor:"black", strokeWeight:2, strokeOpacity:0, fillColor:"red"); //建立多边形覆盖
+					map.addOverlay(ply);  //添加覆盖物
+					//map.setViewport(ply.getPath());    //调整视野         
+				}  
+			});  
+		}
+	}
+	setTimeout(function(){
+		getBoundary();
+	}, 2000);
+	
+	//*****************************************/
+
+</script>

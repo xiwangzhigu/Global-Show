@@ -1,0 +1,100 @@
+body {
+	background-color: #FFF;
+	color: #000;
+	font-size: 12px;
+	text-shadow: 0 1px 1px #000;
+}
+
+#chartType {
+	float: left;
+	width: 200px;
+}
+#container {
+    width : 150px;
+    height: 80px;
+ 
+}
+
+.vert {
+	text-align: center;
+	vertical-align: bottom;
+}
+
+th {
+	font-size: 16px;
+	padding-left: 20px;
+	padding-right: 15px;
+}
+
+.vert th {
+	border-left: 1px #000 solid;
+	border-bottom: 1px #000 solid;
+	padding-bottom: 20px;
+}
+
+.horiz th {
+	border-right: 1px #000 solid;
+}
+
+.horiz img {
+	height: 15px;
+	vertical-align: bottom;
+}
+
+.vert img {
+	width: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+tr.vert + tr.vert {
+	padding-bottom: 20px;
+}
+
+#sidebar {
+  position: fixed;
+  width: 200px;
+  top: 62px;
+  bottom: 18px;
+  right: -180px;
+  transition: left 0.25s ease-in-out 1s;
+  -moz-transition: left 0.25s ease-in-out 1s;
+  -webkit-transition: left 0.25s ease-in-out 1s;
+}
+
+#sidebar:hover {
+  right: 0px;
+  transition: right 0.25s ease-in-out 0s;
+  -moz-transition: right 0.25s ease-in-out 0s;
+  -webkit-transition: right 0.25s ease-in-out 0s;
+}
+
+#sidebarBox {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 350px;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  -moz-border-radius-topright: 8px;
+  -moz-border-radius-bottomright: 8px;
+  -webkit-border-top-right-radius: 8px;
+  -webkit-border-bottom-right-radius: 8px;
+  box-shadow: 2px 0px 8px #000;
+  -moz-box-shadow: 0px 2px 8px #000;
+  -webkit-box-shadow: 0px 2px 8px #000;
+}
+
+#sidebarScrollView {
+  position: absolute;
+  overflow: hidden;
+  overflow-y: hidden;
+  top: 10px;
+  bottom: 10px;
+  right: 10px;
+  width: 170px;
+}
+
+#sidebarContentView {
+  height: auto;
+  width: 250px;
+}

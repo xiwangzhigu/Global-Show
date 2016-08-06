@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>人口经济可视化</title>
+	<link href="./html/css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<!------ commn-js files ----->
+	<script src="./html/js/jquery.min.js"> </script>
+	<!------ commn-js files ----->
+	<!----- theme-style ----->
+	<link href="./html/css/style.css" rel='stylesheet' type='text/css' />
+	<!----- theme-style ----->
+	<!----- webfonts ----->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+	<!----- webfonts ----->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	</script>
+</head>
+	<body>
+	<!---header--->
+		<div class="header">
+		<!---container--->
+			<div class="container">
+			<div class="top-header">
+				<div class="logo">
+					<a href="index.html"><img src="./html/images/logo.png"/></a>
+				</div>
+				<div class="menu">
+					<a class="toggleMenu" href="#"><img src="./html/images/nav-icon.png" alt="" /> </a>
+					<ul class="nav" id="nav">
+						<li class="active"><a href="./html/index.html">主页</a></li>
+						<li><a href="./html/model0.html" class="scroll">全国GDP</a></li>
+						<li><a href="./html/model1.html" class="scroll">各省人口经济</a></li>
+						<li ><a href="./html/model2_0.html" class="scroll">长三角GDP</a></li>
+						<li><a href="./html/model2.html" class="scroll">长三角各市人口经济</a></li>
+						<li ><a href="./html/model3.html" class="scroll">城市间人口迁徙</a></li>
+						<li><a href="./html/about.html" class="scroll">关于</a></li>
+					</ul>
+					<script type="text/javascript" src="./html/js/responsive-nav.js"></script>
+	<!-- 				<script type="text/javascript" src="./js/move-top.js"></script> -->
+					<script type="text/javascript" src="./html/js/easing.js"></script>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+		<!---container--->
+		</div>
+	<!---header--->
+	
+	<!---banner--->
+	<!----start-slider-script---->
+			<script src="./html/js/responsiveslides.min.js"></script>
+			 <script>
+			    // You can also use "$(window).load(function() {"
+			    $(function () {
+			      // Slideshow 4
+			      $("#slider4").responsiveSlides({
+			        auto: true,
+			        pager: true,
+			        nav: true,
+			        speed: 500,
+			        namespace: "callbacks",
+			        before: function () {
+			          $('.events').append("<li>before event fired.</li>");
+			        },
+			        after: function () {
+			          $('.events').append("<li>after event fired.</li>");
+			        }
+			      });
+			
+			    });
+			  </script>
+			<!----//End-slider-script---->
+			<!-- Slideshow 4 -->
+			    <div  id="top" class="callbacks_container">
+			      <ul class="rslides" id="slider4">
+			        <li>
+			          <img src="./html/images/banner.jpg" alt="">
+						<div class="caption bounceInDown" data-wow-delay="0.4s">
+			          	<div class="slide-text-info">
+			          		<h1>欢迎进入</h1>
+							<p>第二届共享杯全国人口经济信息可视化系统</p>
+			          		<div class="slide-btns">
+			          			<a class="startnow" href="./html/summary.pdf" target=_black>系统简介</a>
+			          			<a class="livedemo" href="./html/about.html">了解更多</a>
+			          		</div>
+			          	</div>
+			          </div>
+			        </li>
+			        <li>
+			          <img src="./html/images/leaf.jpg" alt="">
+			        <div class="caption">
+			          	<div class="slide-text-info bounceInDown" data-wow-delay="0.4s">
+			          		<h1>欢迎进入</h1>
+							<p>第二届共享杯全国人口经济信息可视化系统</p>
+			          		<div class="slide-btns">
+			          			<a class="startnow" href="./html/summary.pdf" target=_black>系统简介</a>
+			          			<a class="livedemo" href="./html/about.html">了解更多</a>
+			          		</div>
+			          	</div>
+			          </div>
+			        </li>
+			        <li>
+			          <img src="./html/images/red.jpg" alt="">
+			          <div class="caption">
+			          	<div class="slide-text-info bounceInDown" data-wow-delay="0.4s">
+			          		<h1>欢迎进入</h1>
+							<p>第二届共享杯全国人口经济信息可视化系统</p>
+			          		<div class="slide-btns">
+			          			<a class="startnow" href="./html/summary.pdf" target=_black>系统简介</a>
+			          			<a class="livedemo" href="./html/about.html">了解更多</a>
+			          		</div>
+			          	</div>
+			          </div>
+			        </li>
+			      </ul>
+			    </div>	         
+			    <div class="clearfix"> </div>
+			<!----- //End-slider---->
+		
+	<!---banner--->
+	</body>
+	</html>
+		

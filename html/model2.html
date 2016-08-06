@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>长三角专题</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=3GtFvUoW2pEpmrKxFF6qdNkA"></script>
+	<link href="./css/bootstrap.css" rel='stylesheet' type='text/css' />
+	<!------ commn-js files ----->
+	<script src="./js/jquery.min.js"> </script>
+	<!------ commn-js files ----->
+	<!----- theme-style ----->
+	<link href="./css/style.css" rel='stylesheet' type='text/css' />
+	<!----- theme-style ----->
+	<!----- webfonts ----->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800' rel='stylesheet' type='text/css'>
+	<!----- webfonts ----->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet"href="css/chart.css">
+	<script src="js/viewer2.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/Heatmap/2.0/src/Heatmap_min.js"></script>
+	<script src="http://s1.bdstatic.com/r/www/cache/ecom/esl/1-6-10/esl.js"></script>
+	<script src="http://echarts.baidu.com/doc/asset/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/doc/asset/js/echartsHome.js"></script>
+    <script src="http://echarts.baidu.com/doc/asset/js/bootstrap.min.js"></script>
+    <script  src="js/timelineOption.js"></script>	
+    <script src="http://echarts.baidu.com/doc/asset/js/echartsExample.js"></script>
+	<script type="text/javascript">
+function MM_callJS(jsStr) { //v2.0
+  return eval(jsStr)
+}
+    </script>
+</head>
+	<body>
+	<!---header--->
+		<div class="header">
+		<!---container--->
+			<div class="container">
+			<div class="top-header">
+				<div class="logo">
+					<a href="../index.html"><img src="./images/logo.png"/></a>
+				</div>
+				<div class="menu">
+					<ul class="nav" id="nav">
+						<li><a href="../index.html">主页</a></li>
+						<li><a href="model0.html" class="scroll">全国GDP</a></li>
+						<li><a href="model1.html" class="scroll">各省人口经济</a></li>
+						<li><a href="model2_0.html" class="scroll">长三角GDP</a></li>
+						<li class="active"><a href="model2.html" class="scroll">长三角各市人口经济</a></li>
+						<li ><a href="model3.html" class="scroll">城市间人口迁徙</a></li>
+						<li><a href="about.html" class="scroll">关于</a></li>
+					</ul>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			</div>
+		<!---container--->
+		</div>
+	<!---header--->
+<!-- 以下开始添加功能代码 -->
+
+<div id="Layer1" style="position:relative;z-index:1">
+	<div id="allmap" style="position:absolute; width:1600px; height:800px; z-index:1; left: 1px; top: 0px;"></div>	
+    <div id="Layer2" style="position:absolute; width:1500px; height:200px; z-index:1; left: 20px; top: 1px;" onfocus="MM_callJS('hello')">
+		<div id="chartType" style="background:#FFFACD;">
+			<p><br>
+			<h4>选择数据范围</p></h4>
+			<p>
+			  <select name="x" id="NumProvice" onchange="checked()" selected=0>
+			    <option value="0">上海市</option>
+
+			    <option value="1">无锡市</option>
+			    <option value="2">南通市</option>
+			    <option value="3">南京市</option>
+			    <option value="4">泰州市</option>
+			    <option value="5">徐州市</option>
+			    <option value="6">常州市</option>
+			    <option value="7">苏州市</option>
+				<option value="8">扬州市</option>
+				<option value="9">镇江市</option>
+				<option value="10">连云港市</option>
+				<option value="11">宿迁市</option>
+				<option value="12">盐城市</option>
+				<option value="13">淮安市</option>
+
+			    <option value="14">嘉兴市</option>
+			    <option value="15">宁波市</option>
+			    <option value="16">舟山市</option>
+			    <option value="17">温州市</option>
+			    <option value="18">台州市</option>
+			    <option value="19">绍兴市</option>
+			    <option value="20">杭州市</option>
+				<option value="21">湖州市</option>
+				<option value="22">金华市</option>
+				<option value="23">衢州市</option>
+				<option value="24">丽水市</option>	
+		      </select>
+		  </p>
+			<h4>选择数据类型<br> </h4>
+			<input type="radio" name="type" value="browser" checked="checked">人口数据<br>
+			<input type="radio" name="type" value="platform">GDP数据<br>
+			
+			</p>
+		  <p></p>
+		 <b></b><span id="rate"></span><br/>
+		 <b></b><span id="OutRate"></span><br/>
+	  </div>
+		<div id="chartArea">&nbsp;</div>
+	</div>
+	<div id="top_button" style="position:absolute; width:130px; height:50px; z-index:2; left: 30px; top: 200px;">
+	<button id="allchina"onclick="buttonfun0()"> 经济发展可视化 </button>
+	<button id="allchina"onclick="buttonfun1()"> 人口密度可视化 </button>
+	<button id="csj"onclick="buttonfun2()">   人口图表专题   </button>
+	<button id="timeline"onclick="buttonfun3()">十年GDP动态显示</button>
+	<button id="timeline"onclick="buttonfun4()">长三角范围</button>
+	</div>
+</div>
+ 
+ 
+<div id="a1" style="position:absolute; height:200px;width:120px;z-index:3;border:0px solid #ccc;padding:0px;left:10px;bottom:10px;display:none"><img src="images/2.png" /></div>
+<div id="a2" style="position:absolute; height:200px;width:120px;z-index:3;border:0px solid #ccc;padding:0px;left:10px;bottom:10px;display:none"><img src="images/1.png" /></div>
+<div id="main" style="position:absolute; height:300px;width:900px;z-index:3;border:0px solid #ccc;padding:0px;right:10px;bottom:10px;display:none"></div>
+<script src="js/main_city_gdp.js"></script>
+<div id="main2" style="position:absolute; height:300px;width:900px;z-index:3;border:0px solid #ccc;padding:10px;right:0px;bottom:10px;display:none"></div>
+<script src="js/time-line.js"></script>
+	</body>
+	</html>
+	
+<script type="text/javascript">
+   
+   //百度地图API功能
+	var map = new BMap.Map("allmap");
+	var map = new BMap.Map("allmap",{minZoom:5,maxZoom:15}); // 创建Map实例,设置地图允许的最小/大级别
+	
+	map.centerAndZoom(new BMap.Point(126.360368,31.867917), 7);
+	map.enableScrollWheelZoom();
+	map.enableDragging();
+	data=new Array();
+	
+	
+	var provice=new Array("上海市","无锡市","南通市","南京市","泰州市","徐州市","常州市","苏州市","扬州市","镇江市","连云港市","宿迁市","盐城市","淮安市","嘉兴市","宁波市","舟山市","温州市","台州市","绍兴市","杭州市","湖州市","金华市","衢州市","丽水市");
+	
+	var color=new Array("#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2","#FFD2D2");
+
+	
+	
+	
+	function buttonfun0()
+	{
+	document.getElementById("a2").style.display="none"; 
+	document.getElementById("a1").style.display=""; 
+	map.clearOverlays();
+	var bdary = new BMap.Boundary(); 
+    var length=data2.length; 
+	for (var index=0;index<length ;index++ ) 
+	{ 
+	(function(index){ //闭包用法 
+	bdary.get(data2[index].city, function(rs){ //获取行政区域 
+	var count = rs.boundaries.length; //行政区域有几部分多边形组成 
+	var bounds; 
+	var center; 
+	for(var i = 0; i < count; i++){ 
+	ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 1, strokeColor: "#000000",fillColor: data2[index].color,fillOpacity:0.7 }); //建立多边形覆盖物 
+	if (!bounds)//取行政区域第一组成部分的中心点 
+	{ 
+	center=ply.getBounds().getCenter(); 
+	} 
+	map.addOverlay(ply); //添加覆盖物 
+	} 
+	
+	}); 
+	})(index); 
+	}
+	}
+	function buttonfun1()
+	{
+	document.getElementById("a1").style.display="none"; 
+	document.getElementById("a2").style.display=""; 
+	map.clearOverlays();
+	var bdary = new BMap.Boundary(); 
+    var length=data.length; 
+	for (var index=0;index<length ;index++ ) 
+	{ 
+	(function(index){ //闭包用法 
+	bdary.get(data[index].city, function(rs){ //获取行政区域 
+	var count = rs.boundaries.length; //行政区域有几部分多边形组成 
+	var bounds; 
+	var center; 
+	for(var i = 0; i < count; i++){ 
+	ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 1, strokeColor: "#000000",fillColor: data[index].color,fillOpacity:0.7 }); //建立多边形覆盖物 
+	if (!bounds)//取行政区域第一组成部分的中心点 
+	{ 
+	center=ply.getBounds().getCenter(); 
+	} 
+	map.addOverlay(ply); //添加覆盖物 
+	} 
+	
+	}); 
+	})(index); 
+	}
+	}
+	function buttonfun2()
+	{
+	//map.clearOverlays();
+	document.getElementById("main2").style.display="none"; 
+	document.getElementById("main").style.display=""; 
+	}
+	function buttonfun3()
+	{
+	document.getElementById("main").style.display="none"; 
+	document.getElementById("main2").style.display=""; 
+	}
+	function buttonfun4()
+	{
+	document.getElementById("main").style.display="none"; 
+	document.getElementById("main2").style.display="none"; 
+	document.getElementById("a1").style.display="none"; 
+	document.getElementById("a2").style.display="none"; 
+	map.clearOverlays();
+	var bdary = new BMap.Boundary(); 
+    var length=data3.length; 
+    for (var index=0;index<length ;index++ ) 
+    { 
+    (function(index){ //闭包用法 
+    bdary.get(data3[index].city, function(rs){ //获取行政区域 
+    var count = rs.boundaries.length; //行政区域有几部分多边形组成 
+    var bounds; 
+    var center; 
+    for(var i = 0; i < count; i++){ 
+    ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 1, strokeColor: "#FF0000",fillColor: data3[index].color,fillOpacity:0.7 }); //建立多边形覆盖物 
+    if (!bounds)//取行政区域第一组成部分的中心点 
+    { 
+    center=ply.getBounds().getCenter(); 
+    } 
+    map.addOverlay(ply); //添加覆盖物 
+    } 
+    }); 
+    })(index); 
+    }
+	}
+
+var data=[{city:'上海市',color:'#FF0000'},{city:'南京市',color:'#FF0000'},{city:'无锡市',color:'#FF0000'},{city:'南通市',color:'#FF0000'},{city:'泰州市',color:'#FF0000'},{city:'徐州市',color:'#FF5151'},{city:'常州市',color:'#FF5151'},{city:'苏州市',color:'#FF5151'},{city:'扬州市',color:'#FF5151'},{city:'镇江市',color:'#FF5151'},{city:'连云港市',color:'#FF5151'},{city:'宿迁市',color:'#FF9797'},{city:'盐城市',color:'#FF9797'},{city:'淮安市',color:'#FF9797'},{city:'嘉兴市',color:'#FF0000'},{city:'宁波市',color:'#FF0000'},{city:'舟山市',color:'#FF5151'},{city:'温州市',color:'#FF5151'},{city:'台州市',color:'#FF5151'},{city:'绍兴市',color:'#FF9797'},{city:'杭州市',color:'#FF9797'},{city:'湖州市',color:'#FF9797'},{city:'金华市',color:'#FF9797'},{city:'衢州市',color:'#FFD2D2'},{city:'丽水市',color:'#FFD2D2'}]; 	
+var data3=[{city:'上海市',color:'#FFD2D2'},{city:'江苏省',color:'#FFD2D2'},{city:'浙江省',color:'#FFD2D2'}]; 
+var data2=[{city:'上海市',color:'#FF0000'},{city:'南京市',color:'#FF0000'},{city:'无锡市',color:'#FF0000'},{city:'南通市',color:'#FF5151'},{city:'泰州市',color:'#FF9797'},{city:'徐州市',color:'#FF5151'},{city:'常州市',color:'#FF5151'},{city:'苏州市',color:'#FF0000'},{city:'扬州市',color:'#FF9797'},{city:'镇江市',color:'#FF9797'},{city:'连云港市',color:'#FF5151'},{city:'宿迁市',color:'#FFD2D2'},{city:'盐城市',color:'#FF9797'},{city:'淮安市',color:'#FF9797'},{city:'嘉兴市',color:'#FF9797'},{city:'宁波市',color:'#FF5151'},{city:'舟山市',color:'#FFD2D2'},{city:'温州市',color:'#FF5151'},{city:'台州市',color:'#FF9797'},{city:'绍兴市',color:'#FF9797'},{city:'杭州市',color:'#FF0000'},{city:'湖州市',color:'#FFD2D2'},{city:'金华市',color:'#FF9797'},{city:'衢州市',color:'#FFD2D2'},{city:'丽水市',color:'#FFD2D2'}]; 
+
+var bdary = new BMap.Boundary(); 
+var length=data3.length; 
+for (var index=0;index<length ;index++ ) 
+{ 
+(function(index){ //闭包用法 
+bdary.get(data3[index].city, function(rs){ //获取行政区域 
+var count = rs.boundaries.length; //行政区域有几部分多边形组成 
+var bounds; 
+var center; 
+for(var i = 0; i < count; i++){ 
+ply = new BMap.Polygon(rs.boundaries[i], {strokeWeight: 1, strokeColor: "#FF0000",fillColor: data3[index].color,fillOpacity:0.7 }); //建立多边形覆盖物 
+if (!bounds)//取行政区域第一组成部分的中心点 
+{ 
+center=ply.getBounds().getCenter(); 
+} 
+map.addOverlay(ply); //添加覆盖物 
+} 
+
+}); 
+})(index); 
+}
+</script>
+		
